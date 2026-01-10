@@ -1,62 +1,51 @@
+# ComfyUI Image Comparer Slider
+
 <div align="center">
 
-🎨 Image Comparer Slider
+![Version](https://img.shields.io/badge/version-1.0.0-black?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-black?style=for-the-badge)
 
-by 3R3BOS
+<br>
 
-The professional way to compare up to
+**A seamless, high-performance image comparison node designed for efficiency.**
+Streamline your workflow with smart input management and zero-latency scrubbing.
 
-
- 20 images in ComfyUI.
-
-https://github.com/user-attachments/assets/91c2eb3d-796f-48b3-8654-32eca8a64ad9
+[View Demo](#demo) — [Installation](#installation) — [Documentation](#usage)
 
 </div>
 
-<hr>
+<br>
 
-✨ Key Features
+## Overview
 
-🎚️ Interactive Slider: Smooth "Before/After" comparison directly in the node.
+The **Image Comparer Slider** addresses the clutter of traditional comparison workflows. It replaces manual wiring and gallery reloading with a single, intelligent node that adapts to your graph.
 
-🧠 Smart Inputs: Automatically creates slots as you connect images (starts at 2, scales to 20).
+| Core Capabilities | |
+| :--- | :--- |
+| **Dynamic Inputs** | Slots are generated on-demand. Connect a wire, and a new slot appears automatically. |
+| **Auto-Compaction** | Disconnecting a source automatically reorganizes the inputs to remove gaps. |
+| **Native Integration** | A custom-rendered slider within the node allowing for precise "Before/After" analysis. |
+| **Performance** | Built-in Javascript caching ensures 60fps scrubbing with no server round-trips. |
 
-🧹 Auto-Clean: Unused slots disappear automatically to keep your graph clean.
+---
 
-⚡ Zero-Lag: Optimized caching system for instant scrubbing without reloading.
+## Demo
 
-📦 Installation
+https://github.com/user-attachments/assets/4fa94f00-4c20-4478-9fbd-3ca0467015da
 
-Method 1: ComfyUI Manager (Recommended)
+---
 
-Search for Image Comparer Slider.
+## Installation
 
-Install.
+### Option A: ComfyUI Manager
+The recommended way to install.
+1.  Open **ComfyUI Manager**
+2.  Search for: `Image Comparer Slider`
+3.  Install and Restart
 
-Restart ComfyUI.
+### Option B: Manual Clone
+To install via terminal:
 
-Method 2: Manual
-
+```bash
 cd ComfyUI/custom_nodes/
-git clone [https://github.com/TON_NOM_GITHUB/ComfyUI-Image_Comparer_Slider.git](https://github.com/TON_NOM_GITHUB/ComfyUI-Image_Comparer_Slider.git)
-
-
-🛠️ Usage
-
-Add Node: Search for "Image Comparer Slider (3R3BOS)".
-
-Connect: Link your Base image (image_1) and your Refined images (image_2...).
-
-Queue: Run your prompt.
-
-Compare: Use the slider to check differences instantly.
-
-<div align="center">
-
-❤️ Credits
-
-Created by 3R3BOS
-
-License MIT
-
-</div>
+git clone [https://github.com/3R3BOS/ComfyUI-Image_Comparer_Slider.git](https://github.com/3R3BOS/ComfyUI-Image_Comparer_Slider.git)
