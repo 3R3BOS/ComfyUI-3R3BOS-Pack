@@ -27,7 +27,7 @@ This pack is designed to grow. Currently, it includes two core tools focused on 
 The Visual Gatekeeper brings a true "Pause" button to ComfyUI. It halts the workflow after an initial generation, allowing you to approve or reject the image before sending it to expensive Refiners or Upscalers.
 
 #### 🎥 Gatekeeper Demo
-[Insert your Gatekeeper Video here - Drag & Drop file on GitHub]
+https://github.com/user-attachments/assets/a0ce436b-20b6-45a4-9dad-97841de2be94
 
 * **Human-in-the-Loop:** Grants you manual control over the generation pipeline.
 * **Clear UX:** Large preview with prominent **APPROVE** (Green) and **REJECT** (Red) buttons.
@@ -43,7 +43,7 @@ The Visual Gatekeeper brings a true "Pause" button to ComfyUI. It halts the work
 A high-performance slider to compare Checkpoints, LoRAs, or "Before/After" Upscaling results with zero latency.
 
 #### 🎥 Slider Demo
-[Insert your Gatekeeper Video here - Drag & Drop file on GitHub]
+https://github.com/user-attachments/assets/f10d6c4d-be38-40c9-9cec-135250451fa9
 
 * **Dynamic Inputs:** Automatically creates up to 20 input slots as you connect wires.
 * **Zero-Lag:** Client-side caching ensures 60fps scrubbing.
