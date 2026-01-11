@@ -28,7 +28,7 @@ Documentation = "https://github.com/3R3BOS/ComfyUI-3R3BOS-Pack/wiki"
 "Bug Tracker" = "https://github.com/3R3BOS/ComfyUI-3R3BOS-Pack/issues"
 
 [tool.comfy]
-PublisherId = ""
+PublisherId = "er3bos"
 DisplayName = "ComfyUI-3R3BOS-Pack"
 Icon = ""
 includes = [] 
