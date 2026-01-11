@@ -2,7 +2,8 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.0.1-black?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.0.1-blue?style=for-the-badge)
+![Registry](https://img.shields.io/badge/Comfy_Registry-er3bos-black?style=for-the-badge&logo=comfyui)
 ![License](https://img.shields.io/badge/license-MIT-black?style=for-the-badge)
 
 <br>
@@ -54,18 +55,14 @@ https://github.com/user-attachments/assets/f10d6c4d-be38-40c9-9cec-135250451fa9
 
 <br>
 
-## Installation
+## 🚀 Installation
 
 ### Option A: ComfyUI Manager (Recommended)
-1.  Open **ComfyUI Manager**.
-2.  Search for: `3R3BOS Pack`
-3.  Install and Restart.
+1. Open **ComfyUI Manager** in your browser.
+2. Search for: `3R3BOS Pack`.
+3. Click **Install** and Restart ComfyUI.
 
-*(Note: If the pack is not yet in the official list, use "Install via Git URL" with the link below)*
-
-### Option B: Manual Clone
-To install via terminal:
-
+### Option B: Comfy Registry (CLI)
+If you are using the official `comfy-cli`, you can install the pack directly with:
 ```bash
-cd ComfyUI/custom_nodes/
-git clone https://github.com/3R3BOS/ComfyUI-3R3BOS-Pack.git
+comfy node install 3r3bos-pack
