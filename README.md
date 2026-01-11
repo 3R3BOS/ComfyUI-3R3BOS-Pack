@@ -20,9 +20,14 @@ Created to simplify complex interactions, this **evolving suite** brings profess
 
 This pack is designed to grow. Currently, it includes two core tools focused on UX and Efficiency.
 
+---
+
 ### 1. Visual Gatekeeper (Logic)
 **"Stop wasting GPU time on bad generations."**
 The Visual Gatekeeper brings a true "Pause" button to ComfyUI. It halts the workflow after an initial generation, allowing you to approve or reject the image before sending it to expensive Refiners or Upscalers.
+
+#### 🎥 Gatekeeper Demo
+[Insert your Gatekeeper Video here - Drag & Drop file on GitHub]
 
 * **Human-in-the-Loop:** Grants you manual control over the generation pipeline.
 * **Clear UX:** Large preview with prominent **APPROVE** (Green) and **REJECT** (Red) buttons.
@@ -36,6 +41,9 @@ The Visual Gatekeeper brings a true "Pause" button to ComfyUI. It halts the work
 ### 2. Image Comparer Slider (Visualization)
 **"The ultimate A/B testing tool."**
 A high-performance slider to compare Checkpoints, LoRAs, or "Before/After" Upscaling results with zero latency.
+
+#### 🎥 Slider Demo
+[Insert your Gatekeeper Video here - Drag & Drop file on GitHub]
 
 * **Dynamic Inputs:** Automatically creates up to 20 input slots as you connect wires.
 * **Zero-Lag:** Client-side caching ensures 60fps scrubbing.
