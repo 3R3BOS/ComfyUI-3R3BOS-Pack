@@ -1,5 +1,5 @@
 [project]
-name = "3r3bos-pack"
+name = "ComfyUI-3R3BOS-Pack"
 description = "Control and visualization toolkit (Gatekeeper, Slider) and more in the future."
 version = "1.0.1"
 license = {file = "LICENSE"} 
