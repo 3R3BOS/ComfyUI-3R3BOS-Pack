@@ -1,7 +1,7 @@
 [project]
 name = "3r3bos-pack"
 description = "Control and visualization toolkit (Gatekeeper, Slider) and more in the future."
-version = "1.0.1"
+version = "1.0.2"
 license = {file = "LICENSE"} 
 # classifiers = [
 #     # For OS-independent nodes (works on all operating systems)
