@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.0.2-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.0.3-blue?style=for-the-badge)
 ![Registry](https://img.shields.io/badge/Comfy_Registry-er3bos-black?style=for-the-badge&logo=comfyui)
 ![License](https://img.shields.io/badge/license-MIT-black?style=for-the-badge)
 
