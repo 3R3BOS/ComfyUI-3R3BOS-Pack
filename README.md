@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.0.1-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.0.2-blue?style=for-the-badge)
 ![Registry](https://img.shields.io/badge/Comfy_Registry-er3bos-black?style=for-the-badge&logo=comfyui)
 ![License](https://img.shields.io/badge/license-MIT-black?style=for-the-badge)
 
@@ -25,19 +25,21 @@ This pack is designed to grow. Currently, it includes two core tools focused on 
 
 ---
 
-### 1. Visual Gatekeeper (Logic)
-**"Stop wasting GPU time on bad generations."**
-The Visual Gatekeeper brings a true "Pause" button to ComfyUI. It halts the workflow after an initial generation, allowing you to approve or reject the image before sending it to expensive Refiners or Upscalers.
+### 1. Batch Selector (Control)
+**"Filter your generations like a Pro."**
+The Batch Selector replaces the need for complex preview-and-cancel workflows. It pauses execution, allowing you to visually select the best candidates from a batch before passing them downstream.
 
-#### 🎥 Gatekeeper Demo
-https://github.com/user-attachments/assets/a0ce436b-20b6-45a4-9dad-97841de2be94
+#### 🎥 Selector Demo
+https://github.com/user-attachments/assets/a7475e56-9183-4be0-87c8-7816d6574f7c
 
-* **Human-in-the-Loop:** Grants you manual control over the generation pipeline.
-* **Clear UX:** Large preview with prominent **APPROVE** (Green) and **REJECT** (Red) buttons.
-* **Resource Saving:** Instantly cancels the rest of the workflow if the image is rejected.
+#### Features
+*   **Native Canvas UI:** A responsive, pixel-perfect interface drawn directly in the node graph. No floating HTML windows.
+*   **Intelligent Layout:** Automatically adjusts the grid to fit your image aspect ratios (Portrait/Landscape) without distortion.
+*   **Zero-Overhead:** Only passes the selected images to the next node (Upscaler, Saver, etc.), saving massive GPU time.
+*   **Workflow Control:** Includes a dedicated **CANCEL** button to instantly stop the workflow if the batch is unsatisfactory.
 
-> **Node Name:** `Visual Gatekeeper`
-> **Menu:** `3R3BOS/Logic`
+> **Node Name:** `Batch Selector`
+> **Menu:** `3R3BOS`
 
 ---
 
@@ -48,9 +50,9 @@ A high-performance slider to compare Checkpoints, LoRAs, or "Before/After" Upsca
 #### 🎥 Slider Demo
 https://github.com/user-attachments/assets/f10d6c4d-be38-40c9-9cec-135250451fa9
 
-* **Dynamic Inputs:** Automatically creates up to 20 input slots as you connect wires.
-* **Zero-Lag:** Client-side caching ensures 60fps scrubbing.
-* **Auto-Compaction:** Smart inputs reorganize themselves if you disconnect a source.
+*   **Dynamic Inputs:** Automatically creates up to 20 input slots as you connect wires.
+*   **Zero-Lag:** Client-side caching ensures 60fps scrubbing.
+*   **Auto-Compaction:** Smart inputs reorganize themselves if you disconnect a source.
 
 > **Node Name:** `Image Comparer Slider`
 > **Menu:** `3R3BOS/Image`
@@ -68,3 +70,21 @@ https://github.com/user-attachments/assets/f10d6c4d-be38-40c9-9cec-135250451fa9
 If you are using the official `comfy-cli`, you can install the pack directly with:
 ```bash
 comfy node install 3r3bos-pack
+```
+
+### Option C: Manual
+Clone this repository into your `custom_nodes` folder:
+```bash
+cd ComfyUI/custom_nodes
+git clone https://github.com/3R3BOS/ComfyUI-3R3BOS-Pack.git
+```
+
+<br>
+
+## Update Log
+
+### v1.0.2
+*   **NEW NODE:** Introduced `Batch Selector`. A powerful replacement for the deprecated Visual Gatekeeper.
+*   **REMOVED:** `Visual Gatekeeper` (replaced by Batch Selector).
+*   **UI OVERHAUL:** Unified design language across all nodes (Sober/Monochrome aesthetic).
+*   **PERFORMANCE:** Native canvas rendering for Batch Selector eliminates HTML overlay issues.
