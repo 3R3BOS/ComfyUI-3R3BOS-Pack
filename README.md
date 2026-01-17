@@ -48,7 +48,7 @@ https://github.com/user-attachments/assets/a7475e56-9183-4be0-87c8-7816d6574f7c
 A high-performance slider to compare Checkpoints, LoRAs, or "Before/After" Upscaling results with zero latency.
 
 #### 🎥 Slider Demo
-https://github.com/user-attachments/assets/f10d6c4d-be38-40c9-9cec-135250451fa9
+https://github.com/user-attachments/assets/ebc723e3-692f-49ff-b843-7601d938e799
 
 *   **Dynamic Inputs:** Automatically creates up to 20 input slots as you connect wires.
 *   **Zero-Lag:** Client-side caching ensures 60fps scrubbing.
