@@ -1,8 +1,9 @@
+# Developed by 3R3BOS - Version 1.0.6 (Full 2026 Sync & No Deletion)
 import torch
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-
+# Target MP (MegaPixels) configuration per performance mode
 PRESETS = {
     "Speed / Draft": {
         "video": 0.409600,     
@@ -27,34 +28,35 @@ PRESETS = {
     }
 }
 
+# Architecture database with rounding constraints and VAE factor
 ARCHITECTURES = {
     # --- VIDEO ---
-    "Wan Video (All Versions)":      {"round": 16, "type": "video_qhd"},
-    "Hunyuan Video (V1/V2)":         {"round": 16, "type": "video_qhd"},
-    "Mochi 1 (HD/Standard)":         {"round": 16, "type": "video_qhd"},
-    "HiDream (Video/Dynamic)":       {"round": 16, "type": "video_qhd"},
-    "LTX Video / LTX-2":             {"round": 32, "type": "video_ltx"},
-    "CogVideoX":                     {"round": 32, "type": "video_dvd"},
+    "Wan Video (All Versions)":      {"round": 16, "type": "video_qhd", "vae_factor": 8},
+    "Hunyuan Video (V1/V2)":         {"round": 16, "type": "video_qhd", "vae_factor": 8},
+    "Mochi 1 (HD/Standard)":         {"round": 16, "type": "video_qhd", "vae_factor": 8},
+    "HiDream (Video/Dynamic)":       {"round": 16, "type": "video_qhd", "vae_factor": 8},
+    "LTX Video / LTX-2":             {"round": 32, "type": "video_ltx", "vae_factor": 8},
+    "CogVideoX":                     {"round": 32, "type": "video_dvd", "vae_factor": 8},
 
     # --- NEXT-GEN IMAGE ---
-    "Flux.1 / Flux.2 [Klein]":       {"round": 16, "type": "image_eco"},
-    "Z Image Turbo":                 {"round": 16, "type": "image_eco"},
-    "Aura Flow":                     {"round": 16, "type": "image_eco"},
-    "Lumina / Lumina-Next":          {"round": 32, "type": "image_eco"},
-    "PixArt Alpha / Sigma":          {"round": 32, "type": "image_eco"},
-    "Hunyuan Image 1.0":             {"round": 16, "type": "image_eco"},
-    "Hunyuan Image 2.1 (2K)":        {"round": 16, "type": "image_hunyuan"},
+    "Flux.1 / Flux.2 [Klein]":       {"round": 16, "type": "image_eco", "vae_factor": 8},
+    "Z Image Turbo":                 {"round": 16, "type": "image_eco", "vae_factor": 8},
+    "Aura Flow":                     {"round": 16, "type": "image_eco", "vae_factor": 8},
+    "Lumina / Lumina-Next":          {"round": 32, "type": "image_eco", "vae_factor": 8},
+    "PixArt Alpha / Sigma":          {"round": 32, "type": "image_eco", "vae_factor": 8},
+    "Hunyuan Image 1.0":             {"round": 16, "type": "image_eco", "vae_factor": 8},
+    "Hunyuan Image 2.1 (2K)":        {"round": 16, "type": "image_hunyuan", "vae_factor": 8},
 
     # --- SDXL / PONY ---
-    "SDXL (Base/Turbo/Lightning)":   {"round": 8,  "type": "image_pony"},
-    "Pony / Pony V7":                {"round": 8,  "type": "image_pony"},
-    "Kolors (Kwai)":                 {"round": 8,  "type": "image_pony"},
-    "Illustrious / NoobAI":          {"round": 8,  "type": "image_pony"},
+    "SDXL (Base/Turbo/Lightning)":   {"round": 8,  "type": "image_pony", "vae_factor": 8},
+    "Pony / Pony V7":                {"round": 8,  "type": "image_pony", "vae_factor": 8},
+    "Kolors (Kwai)":                 {"round": 8,  "type": "image_pony", "vae_factor": 8},
+    "Illustrious / NoobAI":          {"round": 8,  "type": "image_pony", "vae_factor": 8},
 
     # --- LEGACY & SPECIAL ---
-    "SD 3.5 (Large/Turbo)":          {"round": 64, "type": "image_eco"},
-    "SD 3.0":                        {"round": 16, "type": "image_eco"},
-    "SD 1.5 / LCM":                  {"round": 8,  "type": "legacy"}
+    "SD 3.5 (Large/Turbo)":          {"round": 64, "type": "image_eco", "vae_factor": 8},
+    "SD 3.0":                        {"round": 16, "type": "image_eco", "vae_factor": 8},
+    "SD 1.5 / LCM":                  {"round": 8,  "type": "legacy", "vae_factor": 8}
 }
 
 def pil2tensor(image):
@@ -64,7 +66,8 @@ class AspectRatioMaster:
     @classmethod
     def INPUT_TYPES(s):
         sorted_archs = sorted(list(ARCHITECTURES.keys()))
-        priority = ["Wan Video (All Versions)", "Flux.1 (All Variants)", "SDXL (Base/Turbo/Lightning)", "LTX Video / LTXV"]
+        # Priority cleanup and synchronization
+        priority = ["Wan Video (All Versions)", "Flux.1 / Flux.2 [Klein]", "SDXL (Base/Turbo/Lightning)", "LTX Video / LTX-2"]
         for p in reversed(priority):
             if p in sorted_archs:
                 sorted_archs.insert(0, sorted_archs.pop(sorted_archs.index(p)))
@@ -110,7 +113,7 @@ class AspectRatioMaster:
         img = Image.new('RGB', (W, H), (20, 20, 22))
         draw = ImageDraw.Draw(img)
 
-        # Grid
+        # Grid background
         for i in range(0, W, 40): draw.line([(i, 0), (i, H)], fill=(30, 30, 35))
         for i in range(0, H, 40): draw.line([(0, i), (W, i)], fill=(30, 30, 35))
 
@@ -169,12 +172,13 @@ class AspectRatioMaster:
         return pil2tensor(img)
 
     def scout(self, model_arch, performance_mode, aspect_ratio, orientation_override, use_batch, batch_size, custom_scale_factor, unique_id):
-        # 1. Config Retrieval
+        # 1. Configuration Retrieval
         conf = ARCHITECTURES.get(model_arch, ARCHITECTURES["Wan Video (All Versions)"])
         round_to = conf["round"]
-        arch_type = conf["type"] # e.g. "video_ltx", "video_qhd"
+        arch_type = conf["type"]
+        vae_factor = conf.get("vae_factor", 8) # Dynamic VAE factor retrieval
 
-        # 2. Preset Selection (Logic Updated for LTXV Precision)
+        # 2. Preset Selection
         if "Labs" in performance_mode:
             selected_preset = PRESETS["Community / Labs 🧪"]
         elif "Speed" in performance_mode:
@@ -182,15 +186,13 @@ class AspectRatioMaster:
         else:
             selected_preset = PRESETS["Standard / Native"]
             
-        # Try to find specific key first (e.g. "video_ltx"), otherwise fallback to generic (e.g. "video")
         if arch_type in selected_preset:
             base_mp = selected_preset[arch_type]
         else:
-            # Fallback logic
             generic_key = "legacy" if "legacy" in arch_type else ("video" if "video" in arch_type else "image")
             base_mp = selected_preset.get(generic_key, 1.0)
 
-        # 3. Calculation
+        # 3. Resolution Calculation
         final_mp = base_mp * (custom_scale_factor ** 2)
 
         try:
@@ -202,17 +204,17 @@ class AspectRatioMaster:
         if orientation_override == "Force Portrait" and r_val > 1: rw, rh = rh, rw
         elif orientation_override == "Force Landscape" and r_val < 1: rw, rh = rh, rw
 
-        # 4. Calculation
         pixels = final_mp * 1_000_000
         s = (pixels / (rw * rh)) ** 0.5
         w = int(round(s * rw / round_to) * round_to)
         h = int(round(s * rh / round_to) * round_to)
 
-        # 5. Output
+        # 4. Adaptive Latent Generation
         b_count = batch_size if use_batch else 1
-        latent = torch.zeros([b_count, 4, h // 8, w // 8])
-        batch_str = str(b_count) if use_batch else "SINGLE"
+        # Use vae_factor for latent space calculation
+        latent = torch.zeros([b_count, 4, h // vae_factor, w // vae_factor])
         
+        batch_str = str(b_count) if use_batch else "SINGLE"
         prev = self.create_preview_image(w, h, aspect_ratio, model_arch, performance_mode, batch_str)
         
         return (w, h, {"samples": latent}, prev)
