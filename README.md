@@ -105,7 +105,7 @@ git clone https://github.com/3R3BOS/ComfyUI-3R3BOS-Pack.git
 ## Update Log
 
 ### v1.0.4
-*   **NEW NODE:** Introduced **Aspect Ratio Master**. The ultimate tool for calculating optimal resolutions for SDXL, Flux, Wan, and LTX.
+*   **NEW NODE:** Introduced **Aspect Ratio Master**. The ultimate tool for calculating optimal resolutions for SDXL, Flux, Wan, LTX, Etc.
 *   **FULL SYNC:** Includes "Magic Numbers" for 2026 models (Hunyuan 2.1, Wan 2.2).
 *   **STABILITY:** Enforced strict Mod64/Mod32 constraints to prevent VAE artifacts.
 *   **BUGFIX:** Moved `Batch Selector` to the `3R3BOS/Image` menu category for better organization.
