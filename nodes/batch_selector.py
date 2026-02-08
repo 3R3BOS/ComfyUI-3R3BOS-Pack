@@ -80,8 +80,20 @@ class BatchSelector:
             "count": batch_size
         })
 
-        # Wait for response
+        # Wait for response (with heartbeat)
+        last_send_time = time.time()
+        
         while unique_id not in SELECTION_CACHE:
+            current_time = time.time()
+            if current_time - last_send_time > 2.0:
+                # Resend event every 2 seconds to ensure frontend gets it
+                PromptServer.instance.send_sync("3r3bos-batch-selector-start", {
+                    "id": unique_id,
+                    "images": filenames,
+                    "count": batch_size
+                })
+                last_send_time = current_time
+            
             time.sleep(0.1)
 
         selected_indices = SELECTION_CACHE.pop(unique_id)
