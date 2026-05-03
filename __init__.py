@@ -3,19 +3,22 @@
 from .nodes.image_comparer_slider import ImageComparerSlider
 from .nodes.batch_selector import BatchSelector
 from .nodes.aspect_ratio_master import AspectRatioMaster
+from .nodes.prompt_selector import PromptSelector
 
 NODE_CLASS_MAPPINGS = {
 
     "Image Comparer (3R3BOS)": ImageComparerSlider,
     "Batch Selector (3R3BOS)": BatchSelector,
-    "Aspect Ratio Master (3R3BOS)": AspectRatioMaster
+    "Aspect Ratio Master (3R3BOS)": AspectRatioMaster,
+    "Prompt Selector (3R3BOS)": PromptSelector
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
 
     "Image Comparer (3R3BOS)": "Image Comparer Slider",
     "Batch Selector (3R3BOS)": "Batch Selector",
-    "Aspect Ratio Master (3R3BOS)": "Aspect Ratio Master"
+    "Aspect Ratio Master (3R3BOS)": "Aspect Ratio Master",
+    "Prompt Selector (3R3BOS)": "Prompt Selector"
 }
 
 
