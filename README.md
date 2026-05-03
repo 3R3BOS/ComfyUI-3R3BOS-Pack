@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.0.5-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.0.6-blue?style=for-the-badge)
 ![Registry](https://img.shields.io/badge/Comfy_Registry-er3bos-black?style=for-the-badge&logo=comfyui)
 ![License](https://img.shields.io/badge/license-MIT-black?style=for-the-badge)
 
@@ -10,8 +10,8 @@
 
 <br>
 
-**The essential toolkit to master control and visualization in your ComfyUI workflows.**
-Created to simplify complex interactions, this **evolving suite** brings professional "Human-in-the-Loop" tools and zero-latency visualization to your generation process.
+**The essential toolkit to master control, prompting, and visualization in your ComfyUI workflows.**
+Created to simplify complex interactions, this **evolving suite** brings professional "Human-in-the-Loop" tools, dynamic prompt databases, and zero-latency visualization to your generation process.
 
 [Installation](#installation) — [Report Bug](https://github.com/3R3BOS/ComfyUI-3R3BOS-Pack/issues)
 
@@ -21,11 +21,33 @@ Created to simplify complex interactions, this **evolving suite** brings profess
 
 ## 📦 The Collection
 
-This pack is designed to grow. Currently, it includes three core tools focused on UX and Efficiency.
+This pack is designed to grow. Currently, it includes four core tools focused on UX and Efficiency.
 
 ---
 
-### 1. Batch Selector (Control)
+### 1. Prompt Selector (Database & Management)
+**"Your Ultimate Personal Prompt & LoRA Library."**
+Stop copying and pasting text from notepads. The Prompt Selector is a visually stunning, fully interactive database built right into the ComfyUI canvas.
+
+#### 🎥 Prompt Selector Demo
+https://github.com/user-attachments/assets/6082f4a2-eb26-4c3d-a688-73d135b33cdc
+
+#### Features
+*   **Built-in Database Editor:** Create, rename, and delete Categories, Subcategories, and Prompt tags directly inside the node. No need to edit JSON files manually.
+*   **Cascading Color System:** Assign custom colors to your categories (e.g., Red for NSFW, Blue for Styles). The interface automatically inherits these colors using a beautiful "Glassmorphism" UI with neon accents.
+*   **Not just for Styles:** Perfect for storing complex prompt engineering tricks, or even **LoRA Trigger Words** so you never forget them!
+*   **Live Preview & Override:** See your final concatenated prompt in real-time in the bottom terminal window. Need a quick tweak? Click `✏️ Edit Live Prompt` to manually add custom text or adjust weights without changing your saved templates.
+*   **Indestructible Layout:** The node automatically resizes and distributes vertical space depending on how many tags you select.
+
+> [!WARNING]
+> **Data Security:** Your prompts are saved locally in the `prompts_db.json` file inside the node folder. **Please make regular backups of this file** before updating or reinstalling your ComfyUI to ensure you never lose your library!
+
+> **Node Name:** `Prompt Selector`
+> **Menu:** `3R3BOS/Text`
+
+---
+
+### 2. Batch Selector (Control)
 **"Filter your generations like a Pro."**
 The Batch Selector replaces the need for complex preview-and-cancel workflows. It pauses execution, allowing you to visually select the best candidates from a batch before passing them downstream.
 
@@ -43,7 +65,7 @@ https://github.com/user-attachments/assets/a7475e56-9183-4be0-87c8-7816d6574f7c
 
 ---
 
-### 2. Image Comparer Slider (Visualization)
+### 3. Image Comparer Slider (Visualization)
 **"The ultimate A/B testing tool."**
 A high-performance slider to compare Checkpoints, LoRAs, or "Before/After" Upscaling results with zero latency.
 
@@ -60,7 +82,7 @@ https://github.com/user-attachments/assets/ebc723e3-692f-49ff-b843-7601d938e799
 
 ---
 
-### 3. Aspect Ratio Master (Ultimate)
+### 4. Aspect Ratio Master (Ultimate)
 **"The definitive resolution calculator."**
 Stop guessing resolutions. The Aspect Ratio Master provides a smart, visual interface to select the perfect resolution for any modern model (SDXL, Flux, Wan, LTX, etc.), guaranteeing adherence to specific VAE requirements (Mod16, Mod32, Mod64).
 
@@ -102,12 +124,18 @@ git clone https://github.com/3R3BOS/ComfyUI-3R3BOS-Pack.git
 
 <br>
 
-## Update Log
+## 📜 Update Log
+
+### v1.0.6
+*   **NEW NODE:** Introduced **Prompt Selector**. A massive interactive database to store and organize your prompts, styles, and LoRA trigger words.
+*   **PREMIUM UI:** Built completely in native Canvas with dark mode, linear gradients, and a cascading color customization system.
+*   **WORKFLOW:** Added a built-in UI editor to Create, Rename, and Delete categories and prompts without ever leaving ComfyUI.
+*   **FLEXIBILITY:** Features a Live Preview terminal with manual text override capabilities.
+
 ### v1.0.5
 *   **CRITICAL FIX:** Solved `Batch Selector` freezing issue when switching browser tabs during generation.
 *   **ROBUSTNESS:** Implemented "Heartbeat" mechanism to ensure the UI never loses connection with the backend.
 *   **STABILITY:** Added crash protection for corrupt or incomplete images in the preview grid.
-
 
 ### v1.0.4
 *   **NEW NODE:** Introduced **Aspect Ratio Master**. The ultimate tool for calculating optimal resolutions for SDXL, Flux, Wan, LTX, Etc.
