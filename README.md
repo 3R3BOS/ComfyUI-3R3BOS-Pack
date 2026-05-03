@@ -26,7 +26,7 @@ This pack is designed to grow. Currently, it includes four core tools focused on
 ---
 
 ### 1. Prompt Selector (Database & Management)
-**"Your Ultimate Personal Prompt & LoRA Library."**
+**"Your Ultimate Personal Prompt & LoRA's trigger words Library."**
 Stop copying and pasting text from notepads. The Prompt Selector is a visually stunning, fully interactive database built right into the ComfyUI canvas.
 
 #### 🎥 Prompt Selector Demo
