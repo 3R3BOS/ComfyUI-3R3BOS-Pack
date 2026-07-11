@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.0.6-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.0.7-blue?style=for-the-badge)
 ![Registry](https://img.shields.io/badge/Comfy_Registry-er3bos-black?style=for-the-badge&logo=comfyui)
 ![License](https://img.shields.io/badge/license-MIT-black?style=for-the-badge)
 
@@ -70,30 +70,36 @@ https://github.com/user-attachments/assets/a7475e56-9183-4be0-87c8-7816d6574f7c
 A high-performance slider to compare Checkpoints, LoRAs, or "Before/After" Upscaling results with zero latency.
 
 #### 🎥 Image Comparer Slider Demo
-https://github.com/user-attachments/assets/ebc723e3-692f-49ff-b843-7601d938e799
+https://github.com/user-attachments/assets/abe6becf-a282-4232-a537-d704b12ec7c0
 
 #### Features
+*   **Slate-Cyan Premium Theme:** Sleek slate-steel body background (`#242730`) with dark title headers (`#1b1e24`) and soft cyan blue accents (`#00b4d8`) to match Aspect Ratio Master.
+*   **Texture Inspector (Synchronized Pan & Zoom):** Zoom in with the mouse wheel centered on your cursor and pan by dragging (left/middle click). The view remains perfectly synchronized across all compared images. Double-click to reset.
+*   **Auto-Loop Playback:** Dedicated Play/Pause button (`▶` / `⏸`) to automatically scroll through images in a smooth forward/reverse ping-pong loop at ~12 FPS. Perfect for video generations and batch testing.
+*   **Smart Source Tracker:** Automatically traces and displays the exact connected source node name (e.g. `KSampler Face`, `Upscale 4x`) under the slider.
 *   **Dynamic Inputs:** Automatically creates up to 20 input slots as you connect wires.
 *   **Zero-Lag:** Client-side caching ensures 60fps scrubbing.
-*   **Auto-Compaction:** Smart inputs reorganize themselves if you disconnect a source.
+*   **Auto-Compaction & Memory Safe:** Smart inputs reorganize themselves upon wire disconnection. Includes full Pointer Capture events and automatic lifecycle garbage collection to prevent browser leaks.
 
-> **Node Name:** `Image Comparer Slider`
+> **Node Name:** `Image Comparer (3R3BOS)`
 > **Menu:** `3R3BOS/Image`
 
 ---
 
 ### 4. Aspect Ratio Master (Ultimate)
 **"The definitive resolution calculator."**
-Stop guessing resolutions. The Aspect Ratio Master provides a smart, visual interface to select the perfect resolution for any modern model (SDXL, Flux, Wan, LTX, etc.), guaranteeing adherence to specific VAE requirements (Mod16, Mod32, Mod64).
+Stop guessing resolutions. The Aspect Ratio Master provides a smart, visual interface to select the perfect resolution for any modern model, guaranteeing strict adherence to specific VAE compression requirements.
 
 #### 🎥 Aspect Ratio Master Demo
-https://github.com/user-attachments/assets/80087374-b33f-4037-830b-8e42a4efdd65
+https://github.com/user-attachments/assets/5df2d21f-075e-4837-a77c-06d6c206c6cc
 
 #### Features
-*   **Smart Database (2026):** Native support for **Hunyuan 2.1 (2K)**, **Wan 2.2**, **Flux.2**, and **LTX Video**.
-*   **Magic Numbers:** Automatically calculates the exact pixel dimensions to avoid artifacts (e.g., Mod32 for LTX).
-*   **Visual Grid:** A beautiful, real-time preview of your aspect ratio and resolution.
-*   **Labs Mode 🧪:** Unlocks "Sweet Spot" resolutions used by the community for maximum quality (e.g., 1.5MP for Flux).
+*   **Aero Sky Blue Theme:** High-contrast professional design with matte obsidian base (`#111216`), frosted grid cards, and sky-blue accents (`#00a2ff`).
+*   **Next-Gen Support (2026):** Full native configuration for **NVIDIA Cosmos (Gen/Predict)** (VAE factor 16), **SANA-1.5 / SANA-Video** (VAE factor 32, rounding 32), **Wan Video (V2.x/V2.5)**, **Hunyuan Video (V1/V2/V1.5)**, **Z-Image Family (Base/Turbo/Edit)**, **OmniGen / OmniGen2**, **Flux.1/2**, and **Illustrious / NoobAI**.
+*   **Direct Pixel Inputs & Custom Toggle:** Toggle switch (`CUSTOM ON / OFF`) placed at the top of the node, with integer fields (`custom_width` & `custom_height`) that auto-scale and round safely to prevent PyTorch tensor mismatch crashes.
+*   **VAE Latent Shape Ticker:** Real-time bottom status bar showing final output dimensions, megapixels count, and exact VAE latent shapes (e.g. `128x64` latents) before queueing.
+*   **Interactive 🔄 Swap:** Swap preset ratios symmetrically (including `2:1 (Univisium)` and `1:2 (Portrait Extra)`), or swap custom width and height values directly when custom mode is enabled.
+*   **Size Lock Protection:** Restricts minimum dimensions to `380x680` to prevent resizing overlaps.
 
 > **Node Name:** `Aspect Ratio Master`
 > **Menu:** `3R3BOS/Utils`
@@ -125,6 +131,11 @@ git clone https://github.com/3R3BOS/ComfyUI-3R3BOS-Pack.git
 <br>
 
 ## 📜 Update Log
+
+### v1.0.7
+*   **PREMIUM SLATE-CYAN THEME:** Complete visual redesign of both **Aspect Ratio Master** and **Image Comparer Slider** with a unified premium Slate-Steel grey theme (`#242730`) and soft cyan blue accents (`#00b4d8`).
+*   **ASPECT RATIO MASTER REFACTOR:** Integrated support for modern 2026 architectures (NVIDIA Cosmos, SANA-1.5, Wan Video, Z-Image, OmniGen), direct custom pixel inputs, real-time VAE latent shape tracking, canvas shadow bleed isolation, and layout dimension locks.
+*   **IMAGE COMPARER SLIDER OVERHAUL:** Added a Synchronized Texture Inspector (Pointer Pan & Zoom), Auto-Play Ping-Pong loop functionality, dynamic source node name tracking, memory-safe pointer capture handlers, and automated cache cleanup routines.
 
 ### v1.0.6
 *   **NEW NODE:** Introduced **Prompt Selector**. A massive interactive database to store and organize your prompts, styles, and LoRA trigger words.
