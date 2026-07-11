@@ -1,3 +1,4 @@
+# Developed by 3R3BOS
 import torch
 import numpy as np
 from PIL import Image
@@ -11,16 +12,12 @@ class ImageComparerSlider:
 
     @classmethod
     def INPUT_TYPES(s):
-        # Dynamically generate inputs.
-        # image_1 is required, others (2 to 20) are optional.
         input_dict = {
             "required": {
                 "image_1": ("IMAGE",),
             },
             "optional": {}
         }
-        
-        # Generating slots image_2 to image_20
         for i in range(2, 21):
             input_dict["optional"][f"image_{i}"] = ("IMAGE",)
             
@@ -38,11 +35,16 @@ class ImageComparerSlider:
         
         if not os.path.exists(full_output_dir):
             os.makedirs(full_output_dir)
+        else:
+            # OPTIMISATION C : Nettoyage automatique du cache précédent
+            for f in os.listdir(full_output_dir):
+                if f.startswith("comp_") and f.endswith(".png"):
+                    try:
+                        os.remove(os.path.join(full_output_dir, f))
+                    except:
+                        pass
 
-        # 1. Retrieve all inputs into a dictionary
         images_map = {1: image_1}
-        
-        # 2. Iterate through optional arguments (image_2, etc.)
         for key, value in kwargs.items():
             if key.startswith("image_") and value is not None:
                 try:
@@ -51,34 +53,34 @@ class ImageComparerSlider:
                 except ValueError:
                     continue
 
-        # 3. Sort images by their number to ensure slider order
         sorted_indices = sorted(images_map.keys())
-        
         global_index = 0
 
-        # 4. Processing and Saving
         for idx in sorted_indices:
             tensor_batch = images_map[idx]
             
-            # Batch handling (if an input contains multiple images)
             for i in range(tensor_batch.shape[0]):
                 tensor = tensor_batch[i]
                 
-                # Conversion Tensor -> Numpy -> PIL
                 array = 255. * tensor.cpu().numpy()
-                image = Image.fromarray(np.clip(array, 0, 255).astype(np.uint8))
+                array = np.clip(array, 0, 255).astype(np.uint8)
+                
+                # Sécurité pour les images monochromes/grayscale [H, W, 1]
+                if array.shape[-1] == 1:
+                    array = array.squeeze(-1)
 
-                # Unique name with random to prevent browser caching
+                image = Image.fromarray(array)
+
                 filename = f"comp_{global_index}_{os.urandom(4).hex()}.png"
                 image.save(os.path.join(full_output_dir, filename))
 
+                # BUG A FIX : On passe le slot_index d'origine (0-based) au frontend
                 results.append({
                     "filename": filename,
                     "subfolder": subfolder,
-                    "type": self.type
+                    "type": self.type,
+                    "slot_index": idx - 1
                 })
                 global_index += 1
 
-        # TRICK: We use "slider_images" instead of "images" 
-        # so ComfyUI doesn't display its default gallery in duplicate.
         return {"ui": {"slider_images": results}}
