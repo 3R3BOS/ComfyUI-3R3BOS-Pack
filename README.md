@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.0.7-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.0.8-blue?style=for-the-badge)
 ![Registry](https://img.shields.io/badge/Comfy_Registry-er3bos-black?style=for-the-badge&logo=comfyui)
 ![License](https://img.shields.io/badge/license-MIT-black?style=for-the-badge)
 
@@ -95,7 +95,8 @@ https://github.com/user-attachments/assets/5df2d21f-075e-4837-a77c-06d6c206c6cc
 
 #### Features
 *   **Aero Sky Blue Theme:** High-contrast professional design with matte obsidian base (`#111216`), frosted grid cards, and sky-blue accents (`#00a2ff`).
-*   **Next-Gen Support (2026):** Full native configuration for **NVIDIA Cosmos (Gen/Predict)** (VAE factor 16), **SANA-1.5 / SANA-Video** (VAE factor 32, rounding 32), **Wan Video (V2.x/V2.5)**, **Hunyuan Video (V1/V2/V1.5)**, **Z-Image Family (Base/Turbo/Edit)**, **OmniGen / OmniGen2**, **Flux.1/2**, and **Illustrious / NoobAI**.
+*   **Next-Gen Support (2026):** Full native configuration for **NVIDIA Cosmos (Gen/Predict)**, **SANA-1.5 / SANA-Video**, **Wan Video (V2.x/V2.5)**, **Hunyuan Video**, **CogVideoX**, **Mochi 1**, **HiDream**, **LTX Video / LTX-2**, **Z-Image Family**, **Flux.1/2**, **Krea 2**, **AuraFlow**, **Lumina**, **OmniGen / OmniGen2**, **SD 3.x**, **Hunyuan Image 1.0 / 2.1**, **SDXL**, **Pony**, **Illustrious / NoobAI**, **SD 1.5** — each with its correct latent channel count and VAE compression factor.
+*   **Correct Latent Channels per Architecture:** Each model outputs the exact right latent shape — `4ch` for SDXL/SD1.5, `12ch` for Mochi, `16ch` for Flux/Wan/SD3/CogVideoX/etc., `32ch` for SANA, `128ch` for LTX Video — preventing channel mismatch crashes with the VAE decoder.
 *   **Direct Pixel Inputs & Custom Toggle:** Toggle switch (`CUSTOM ON / OFF`) placed at the top of the node, with integer fields (`custom_width` & `custom_height`) that auto-scale and round safely to prevent PyTorch tensor mismatch crashes.
 *   **VAE Latent Shape Ticker:** Real-time bottom status bar showing final output dimensions, megapixels count, and exact VAE latent shapes (e.g. `128x64` latents) before queueing.
 *   **Interactive 🔄 Swap:** Swap preset ratios symmetrically (including `2:1 (Univisium)` and `1:2 (Portrait Extra)`), or swap custom width and height values directly when custom mode is enabled.
@@ -131,6 +132,10 @@ git clone https://github.com/3R3BOS/ComfyUI-3R3BOS-Pack.git
 <br>
 
 ## 📜 Update Log
+
+### v1.0.8
+*   **CRITICAL FIX — Aspect Ratio Master:** Latent channel count was hardcoded to `4` for every architecture. All modern models (Flux, Wan, SD3, CogVideoX, Hunyuan Video, Cosmos, etc.) were generating an incorrect latent shape, causing VAE decode crashes or silent grey outputs. Each architecture now outputs the exact correct channel count: `4ch` (SDXL/SD1.5), `12ch` (Mochi 1), `16ch` (Flux/Wan/SD3/CogVideoX/HiDream/Krea2/AuraFlow/Lumina/Z-Image/OmniGen/Hunyuan Image/Cosmos), `32ch` (SANA-1.5), `128ch` (LTX Video).
+*   **FIX — VAE Compression Factor:** `LTX Video` corrected from `vae_factor=8` to `vae_factor=32` (DC-VAE). `Hunyuan Image 2.1` corrected from `vae_factor=8` to `vae_factor=32` (32× spatial compression). `PixArt Alpha/Sigma` corrected to `4ch` (uses SDXL-compatible VAE, not a 16ch architecture).
 
 ### v1.0.7
 *   **PREMIUM SLATE-CYAN THEME:** Complete visual redesign of both **Aspect Ratio Master** and **Image Comparer Slider** with a unified premium Slate-Steel grey theme (`#242730`) and soft cyan blue accents (`#00b4d8`).
