@@ -38,36 +38,54 @@ PRESETS = {
 
 ARCHITECTURES = {
     # --- VIDEO ---
-    "Wan Video (V2.x/V2.5)":          {"round": 16, "type": "video_qhd", "vae_factor": 8},
-    "NVIDIA Cosmos (Gen/Predict)":   {"round": 16, "type": "video_dvd", "vae_factor": 16},
-    "Hunyuan Video (V1/V2/V1.5)":    {"round": 16, "type": "video_qhd", "vae_factor": 8},
-    "Mochi 1 (HD/Standard)":         {"round": 16, "type": "video_qhd", "vae_factor": 8},
-    "HiDream (Video/Dynamic)":       {"round": 16, "type": "video_qhd", "vae_factor": 8},
-    "LTX Video / LTX-2":             {"round": 32, "type": "video_ltx", "vae_factor": 8},
-    "CogVideoX":                     {"round": 32, "type": "video_dvd", "vae_factor": 8},
+    # Wan 2.1/2.2: 3D causal VAE, 16 latent channels, 8x spatial
+    "Wan Video (V2.x/V2.5)":          {"round": 16, "type": "video_qhd", "vae_factor": 8,  "channels": 16},
+    # Cosmos: 16ch latent, 16x spatial compression
+    "NVIDIA Cosmos (Gen/Predict)":   {"round": 16, "type": "video_dvd", "vae_factor": 16, "channels": 16},
+    # Hunyuan Video: 3D causal VAE, 16ch
+    "Hunyuan Video (V1/V2/V1.5)":    {"round": 16, "type": "video_qhd", "vae_factor": 8,  "channels": 16},
+    # Mochi 1: 3D VAE with 12 latent channels, 8x spatial, 6x temporal
+    "Mochi 1 (HD/Standard)":         {"round": 16, "type": "video_qhd", "vae_factor": 8,  "channels": 12},
+    # HiDream video: uses Flux-compatible 16ch VAE
+    "HiDream (Video/Dynamic)":       {"round": 16, "type": "video_qhd", "vae_factor": 8,  "channels": 16},
+    # LTX Video: unique 128ch latent, 32x spatial (DC-VAE)
+    "LTX Video / LTX-2":             {"round": 32, "type": "video_ltx", "vae_factor": 32, "channels": 128},
+    # CogVideoX: 3D causal VAE, 16ch
+    "CogVideoX":                     {"round": 32, "type": "video_dvd", "vae_factor": 8,  "channels": 16},
 
     # --- NEXT-GEN IMAGE ---
-    "Flux.1 / Flux.2 [Klein]":       {"round": 16, "type": "image_eco", "vae_factor": 8},
-    "Z-Image Family (Base/Turbo/Edit)": {"round": 16, "type": "image_eco", "vae_factor": 8},
-    "SANA-1.5 / SANA-Video":         {"round": 32, "type": "image_eco", "vae_factor": 32},
-    "OmniGen / OmniGen2":            {"round": 16, "type": "image_eco", "vae_factor": 8},
-    "Krea 2 (Turbo/Raw)":            {"round": 16, "type": "image_eco", "vae_factor": 8},
-    "Aura Flow":                     {"round": 16, "type": "image_eco", "vae_factor": 8},
-    "Lumina / Lumina-Next":          {"round": 32, "type": "image_eco", "vae_factor": 8},
-    "PixArt Alpha / Sigma":          {"round": 32, "type": "image_eco", "vae_factor": 8},
-    "Hunyuan Image 1.0":             {"round": 16, "type": "image_eco", "vae_factor": 8},
-    "Hunyuan Image 2.1 (2K)":        {"round": 16, "type": "image_hunyuan", "vae_factor": 8},
+    # Flux: 16ch, 8x spatial
+    "Flux.1 / Flux.2 [Klein]":       {"round": 16, "type": "image_eco", "vae_factor": 8,  "channels": 16},
+    # Z-Image: 16ch (same family as Flux)
+    "Z-Image Family (Base/Turbo/Edit)": {"round": 16, "type": "image_eco", "vae_factor": 8,  "channels": 16},
+    # SANA: DC-AE f32c32, 32ch latent, 32x spatial
+    "SANA-1.5 / SANA-Video":         {"round": 32, "type": "image_eco", "vae_factor": 32, "channels": 32},
+    # OmniGen2: 16ch latent diffusion path
+    "OmniGen / OmniGen2":            {"round": 16, "type": "image_eco", "vae_factor": 8,  "channels": 16},
+    # Krea 2: Qwen-Image VAE, 16ch
+    "Krea 2 (Turbo/Raw)":            {"round": 16, "type": "image_eco", "vae_factor": 8,  "channels": 16},
+    # AuraFlow: 16ch latent space
+    "Aura Flow":                     {"round": 16, "type": "image_eco", "vae_factor": 8,  "channels": 16},
+    # Lumina/Lumina-Next: 16ch
+    "Lumina / Lumina-Next":          {"round": 32, "type": "image_eco", "vae_factor": 8,  "channels": 16},
+    # PixArt Alpha/Sigma: uses SDXL-compatible 4ch VAE
+    "PixArt Alpha / Sigma":          {"round": 32, "type": "image_eco", "vae_factor": 8,  "channels": 4},
+    # Hunyuan Image 1.0: 16ch, 8x
+    "Hunyuan Image 1.0":             {"round": 16, "type": "image_eco", "vae_factor": 8,  "channels": 16},
+    # Hunyuan Image 2.1: 16ch, 32x spatial compression
+    "Hunyuan Image 2.1 (2K)":        {"round": 16, "type": "image_hunyuan", "vae_factor": 32, "channels": 16},
 
     # --- SDXL / PONY ---
-    "SDXL (Base/Turbo/Lightning)":   {"round": 8,  "type": "image_pony", "vae_factor": 8},
-    "Pony / Pony V7":                {"round": 8,  "type": "image_pony", "vae_factor": 8},
-    "Kolors (Kwai)":                 {"round": 8,  "type": "image_pony", "vae_factor": 8},
-    "Illustrious / NoobAI":          {"round": 8,  "type": "image_illustrious", "vae_factor": 8},
+    "SDXL (Base/Turbo/Lightning)":   {"round": 8,  "type": "image_pony", "vae_factor": 8,  "channels": 4},
+    "Pony / Pony V7":                {"round": 8,  "type": "image_pony", "vae_factor": 8,  "channels": 4},
+    "Kolors (Kwai)":                 {"round": 8,  "type": "image_pony", "vae_factor": 8,  "channels": 4},
+    "Illustrious / NoobAI":          {"round": 8,  "type": "image_illustrious", "vae_factor": 8,  "channels": 4},
 
     # --- LEGACY ---
-    "SD 3.5 (Large/Turbo)":          {"round": 64, "type": "image_eco", "vae_factor": 8},
-    "SD 3.0":                        {"round": 16, "type": "image_eco", "vae_factor": 8},
-    "SD 1.5 / LCM":                  {"round": 8,  "type": "legacy", "vae_factor": 8}
+    # SD3.x: 16ch VAE
+    "SD 3.5 (Large/Turbo)":          {"round": 64, "type": "image_eco", "vae_factor": 8,  "channels": 16},
+    "SD 3.0":                        {"round": 16, "type": "image_eco", "vae_factor": 8,  "channels": 16},
+    "SD 1.5 / LCM":                  {"round": 8,  "type": "legacy",    "vae_factor": 8,  "channels": 4}
 }
 
 def pil2tensor(image):
@@ -176,6 +194,7 @@ class AspectRatioMaster:
         round_to = conf["round"]
         arch_type = conf["type"]
         vae_factor = conf.get("vae_factor", 8)
+        latent_channels = conf.get("channels", 4)
 
         selected_preset = PRESETS.get(performance_mode, PRESETS["Middle Quality"])
         base_mp = selected_preset.get(arch_type, 1.0)
@@ -198,10 +217,10 @@ class AspectRatioMaster:
             h = int(round(s * rh / round_to) * round_to)
 
         b_count = batch_size if use_batch else 1
-        latent = torch.zeros([b_count, 4, h // vae_factor, w // vae_factor])
-        
+        latent = torch.zeros([b_count, latent_channels, h // vae_factor, w // vae_factor])
+
         batch_str = str(b_count) if use_batch else "SINGLE"
         ratio_str_val = f"{w}:{h}" if use_custom_ratio else aspect_ratio
         prev = self.create_preview_image(w, h, ratio_str_val, model_arch, performance_mode, batch_str)
-        
+
         return (w, h, {"samples": latent}, prev)
